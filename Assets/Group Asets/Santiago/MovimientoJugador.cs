@@ -2,10 +2,6 @@ using UnityEngine;
 
 public class MoviminetoJugador : MonoBehaviour
 {
-
-    
-    
-    
     [SerializeField] private float velocidadMovimiento;
     [SerializeField] private Vector2 direccion;
     private Rigidbody2D rb2D;
@@ -19,14 +15,33 @@ public class MoviminetoJugador : MonoBehaviour
 
     void Update()
     {
-        direccion = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized; 
+        // Captura la entrada del jugador
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
 
-                if (animator != null)
+        // Prioriza el movimiento horizontal sobre el vertical
+        if (horizontal != 0)
+        {
+            direccion = new Vector2(horizontal, 0).normalized; // Solo movimiento horizontal
+        }
+        else if (vertical != 0)
+        {
+            direccion = new Vector2(0, vertical).normalized; // Solo movimiento vertical
+        }
+        else
+        {
+            direccion = Vector2.zero; // No hay movimiento
+        }
+
+        // Actualiza los parámetros del Animator
+        if (animator != null)
         {
             animator.SetFloat("MovimientoX", direccion.x);
             animator.SetFloat("MovimientoY", direccion.y);
             animator.SetBool("EstaMoviendose", direccion.magnitude > 0);
         }
+
+        // Voltea el sprite si se mueve hacia la izquierda
         if (direccion.x < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1); // Voltea el sprite
@@ -36,10 +51,10 @@ public class MoviminetoJugador : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1); // Restaura la escala normal
         }
     }
-    
+
     void FixedUpdate()
     {
+        // Mueve al jugador
         rb2D.MovePosition(rb2D.position + direccion * velocidadMovimiento * Time.deltaTime);
     }
-
 }
