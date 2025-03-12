@@ -22,6 +22,7 @@ public class HealthManager : MonoBehaviour
     public void Takedamage(bool cur)
     {
         currentLives--;
+        AudioManager.Instance.PlaySfx("Hit");
         updateLifes() ;
         if (currentLives == 0)
         {

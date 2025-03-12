@@ -12,13 +12,13 @@ public class EnemySpawn : MonoBehaviour
     private void Start()
     {
         InvokeRepeating("SpawnEnemy", 2.5f,spawnRate);
+        AudioManager.Instance.PlaySfx("EnemyInstance");
         enemyPool = GetComponent<EnemyPool>();
     }
 
     void SpawnEnemy()
     {
-        //float randomX = Random.Range(-spawnRangeX, spawnRangeX);
-        //Vector2 spawnPos = new Vector2(randomX, spawnPoint.position.y);
+        
         GameObject enemy = enemyPool.GetEnemy();
 
         if (enemy != null)

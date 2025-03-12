@@ -27,6 +27,7 @@ public class Gamemanager2 : MonoBehaviour
     public void GameOverWin()
     {
         Debug.Log("You win!");
+        AudioManager.Instance.PlaySfx("GameWin");
         isPaused = true;
         Time.timeScale = 0;
         OnWin?.Invoke();
@@ -35,6 +36,7 @@ public class Gamemanager2 : MonoBehaviour
     public void GameOverLose()
     {
         Debug.Log("You lose!");
+        AudioManager.Instance.PlaySfx("GameOver");
         isPaused = true;
         Time.timeScale = 0;
         OnLose?.Invoke();
