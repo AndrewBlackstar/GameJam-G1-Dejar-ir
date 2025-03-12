@@ -72,15 +72,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.P))
-        {
-            ChangeSceneSelector(TypeScene.NextLevel);
-        }
-    }
-
-
 
     public IEnumerator FadeIn()
     {
@@ -96,8 +87,6 @@ public class GameManager : MonoBehaviour
         {
             if (ManagementData.saveData.configurationsInfo.soundConfiguration.isMute) break;
             currentVolumen += 1;
-            ManagementData.audioMixer.SetFloat(ManagementOptions.TypeSound.Master.ToString(), currentVolumen);
-            Debug.Log($"🔊 FadeIn - Volumen: {currentVolumen} dB"); // 🟢 Imprimir en consola
             yield return new WaitForSecondsRealtime(0.05f);
         }
     }
@@ -137,18 +126,33 @@ public class GameManager : MonoBehaviour
     {
         if (ManagementData.saveData.configurationsInfo.soundConfiguration.isMute) break;
         decibelsMaster -= 1;
-        ManagementData.audioMixer.SetFloat(ManagementOptions.TypeSound.Master.ToString(), decibelsMaster);
-        Debug.Log($"🔇 FadeOut - Volumen: {decibelsMaster} dB"); // 🔴 Imprimir en consola
         yield return new WaitForSecondsRealtime(0.05f);
     }
 }
     public void PlayASound(AudioClip audioClip)
     {
+        if (audioClip == null)
+        {
+            Debug.LogWarning("Intentando reproducir un sonido que no está cargado.");
+            return;
+        }
+
+        StartCoroutine(WaitForSoundLoad(audioClip));
+    }
+
+    private IEnumerator WaitForSoundLoad(AudioClip audioClip)
+    {
+        while (audioClip.loadState == AudioDataLoadState.Loading)
+        {
+            yield return null;  // Espera hasta que el sonido esté completamente cargado
+        }
+
         AudioSource audioBox = Instantiate(Resources.Load<GameObject>("Prefabs/AudioBox/AudioBox")).GetComponent<AudioSource>();
         audioBox.clip = audioClip;
         audioBox.Play();
         Destroy(audioBox.gameObject, audioBox.clip.length);
     }
+
     public void PlayASound(AudioClip audioClip, float initialRandomPitch)
     {
         AudioSource audioBox = Instantiate(Resources.Load<GameObject>("Prefabs/AudioBox/AudioBox")).GetComponent<AudioSource>();

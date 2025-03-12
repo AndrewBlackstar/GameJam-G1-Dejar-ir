@@ -60,6 +60,7 @@ public class ManagementOptions : MonoBehaviour
             }
         }
     }
+
     public void InitializeResolutionDropdown()
     {
         foreach (var resolutions in ManagementData.saveData.configurationsInfo.resolutionConfiguration.allResolutions)
@@ -122,6 +123,7 @@ public class ManagementOptions : MonoBehaviour
             managementLanguage.ValidateChangeText();
         }
     }
+    /*
     public void SetFullScreen(){
         ManagementData.saveData.configurationsInfo.resolutionConfiguration.isFullScreen = !ManagementData.saveData.configurationsInfo.resolutionConfiguration.isFullScreen;
         fullScreenCheck.SetActive(ManagementData.saveData.configurationsInfo.resolutionConfiguration.isFullScreen);
@@ -140,7 +142,7 @@ public class ManagementOptions : MonoBehaviour
             currentResolution.height,
             ManagementData.saveData.configurationsInfo.resolutionConfiguration.isFullScreen);
         ManagementData.SaveGameData();
-    }
+    }*/
     public void SetMute()
     {
         ManagementData.saveData.configurationsInfo.soundConfiguration.isMute = !ManagementData.saveData.configurationsInfo.soundConfiguration.isMute;
