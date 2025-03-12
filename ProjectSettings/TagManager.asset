@@ -8,6 +8,7 @@ TagManager:
   - ground
   - walls
   - Enemy
+  - ReachPoint
   layers:
   - Default
   - TransparentFX
