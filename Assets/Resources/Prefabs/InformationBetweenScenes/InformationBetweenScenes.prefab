@@ -91,6 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   managementData: {fileID: 7655663443650843437}
   OpenCloseScene: {fileID: 4463745145349488108}
+  isPaused: 0
 --- !u!1 &793226836195673349
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &527081751293070920
 RectTransform:
   m_ObjectHideFlags: 0
@@ -358,7 +359,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 86833c031e6d4aa4097a55afa7c096c1, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0

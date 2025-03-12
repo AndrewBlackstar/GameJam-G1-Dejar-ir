@@ -42,8 +42,8 @@ public class GameManager : MonoBehaviour
         switch (typeScene)
         {
             case TypeScene.HomeScene:
-                OpenCloseScene.SetBool("Out", true);
-                OpenCloseScene.Play("Out");
+                //OpenCloseScene.SetBool("Out", true);
+                //OpenCloseScene.Play("Out");
                 StartCoroutine(FadeOut());
                 StartCoroutine(ChangeScene(typeScene));
                 break;
@@ -51,20 +51,20 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("OptionsScene", LoadSceneMode.Additive);
                 break;
             case TypeScene.EscenaInicio:
-                OpenCloseScene.SetBool("Out", true);
-                OpenCloseScene.Play("Out");
+                //OpenCloseScene.SetBool("Out", true);
+               // OpenCloseScene.Play("Out");
                 StartCoroutine(FadeOut());
                 StartCoroutine(ChangeScene(typeScene));
                 break;
             case TypeScene.Exit:
-                OpenCloseScene.SetBool("Out", true);
-                OpenCloseScene.Play("Out");
+               // OpenCloseScene.SetBool("Out", true);
+               // OpenCloseScene.Play("Out");
                 StartCoroutine(FadeOut());
                 StartCoroutine(ChangeScene(typeScene));
                 break;
             case TypeScene.NextLevel:
-                OpenCloseScene.SetBool("Out", true);
-                OpenCloseScene.Play("Out");
+               // OpenCloseScene.SetBool("Out", true);
+               // OpenCloseScene.Play("Out");
                 StartCoroutine(FadeOut());
                 StartCoroutine(NextLevel());
                 break;
