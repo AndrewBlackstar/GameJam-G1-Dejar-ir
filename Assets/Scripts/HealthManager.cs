@@ -26,7 +26,7 @@ public class HealthManager : MonoBehaviour
         updateLifes() ;
         if (currentLives == 0)
         {
-            Gamemanager2.GameInstance.GameOverLose();
+            GameManager.GameInstance.GameOverLose();
             
         }
     }

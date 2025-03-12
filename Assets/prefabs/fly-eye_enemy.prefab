@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8332637790915535967}
   - component: {fileID: 7969795380259244002}
   - component: {fileID: 4927702753495799172}
-  - component: {fileID: 7585863549717935529}
+  - component: {fileID: 7167307676454488133}
   m_Layer: 0
   m_Name: fly-eye_enemy
   m_TagString: Enemy
@@ -163,13 +163,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e39f6090724e4a4a8aadeb042afa2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &7585863549717935529
-SphereCollider:
+--- !u!70 &7167307676454488133
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5336693284002378422}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -178,9 +181,22 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.24
-  m_Center: {x: 0, y: 0, z: 0}
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -0.03}
+  m_Size: {x: 0.21, y: 0.35}
+  m_Direction: 0

@@ -3,10 +3,37 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class GameManager : MonoBehaviour
 {
+    public static GameManager GameInstance { get; private set; }
+
     public ManagementData managementData;
     public Animator OpenCloseScene;
+
+
+    public bool isPaused;
+
+    //public event Action OnWin;
+    //public event Action OnLose;
+
+
+
+    private void Awake()
+    {
+        if (GameInstance == null)
+        {
+            GameInstance = this;
+            DontDestroyOnLoad(this.gameObject);
+
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+
     public void Start(){
         managementData.SetAudioMixerData();
     }
@@ -23,7 +50,7 @@ public class GameManager : MonoBehaviour
             case TypeScene.OptionsScene:
                 SceneManager.LoadScene("OptionsScene", LoadSceneMode.Additive);
                 break;
-            case TypeScene.GameScene:
+            case TypeScene.EscenaInicio:
                 OpenCloseScene.SetBool("Out", true);
                 OpenCloseScene.Play("Out");
                 StartCoroutine(FadeOut());
@@ -35,8 +62,26 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(FadeOut());
                 StartCoroutine(ChangeScene(typeScene));
                 break;
+            case TypeScene.NextLevel:
+                OpenCloseScene.SetBool("Out", true);
+                OpenCloseScene.Play("Out");
+                StartCoroutine(FadeOut());
+                StartCoroutine(NextLevel());
+                break;
+
         }
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.P))
+        {
+            ChangeSceneSelector(TypeScene.NextLevel);
+        }
+    }
+
+
+
     public IEnumerator FadeIn()
     {        
         float decibelsMaster = 20 * Mathf.Log10(ManagementData.saveData.configurationsInfo.soundConfiguration.MASTERValue / 100);
@@ -70,6 +115,17 @@ public class GameManager : MonoBehaviour
         OpenCloseScene.SetBool("Out", false);
         StartCoroutine(FadeIn());
     }
+
+    public IEnumerator NextLevel()
+    {
+        Time.timeScale = 1;
+        yield return new WaitForSecondsRealtime(2);
+        OpenCloseScene.SetBool("Out", false);
+        StartCoroutine(FadeIn());
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
     public IEnumerator FadeOut()
     {
         float decibelsMaster = 20 * Mathf.Log10(ManagementData.saveData.configurationsInfo.soundConfiguration.MASTERValue / 100);
@@ -106,7 +162,22 @@ public class GameManager : MonoBehaviour
     {
         HomeScene = 0,
         OptionsScene = 1,
-        GameScene = 2,
-        Exit = 3
+        EscenaInicio = 2,
+        Exit = 3,
+        NextLevel = 4
+    }
+
+    public void GameOverWin()
+    {
+        Debug.Log("You win!");
+        AudioManager.Instance.PlaySfx("GameWin");
+        ChangeSceneSelector(TypeScene.NextLevel);
+    }
+
+    public void GameOverLose()
+    {
+        Debug.Log("You lose!");
+        AudioManager.Instance.PlaySfx("GameOver");
+        ChangeSceneSelector(TypeScene.HomeScene);
     }
 }

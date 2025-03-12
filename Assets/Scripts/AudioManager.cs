@@ -7,24 +7,23 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
     public Sounds[] musicSound, SfxSound;
     public AudioSource  musicSource, sfxSource;
-    public AudioMixer audioMixer;
+   
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        
 
     }
 
     private void Start()
     {
+        float volume = PlayerPrefs.GetFloat("Volume", 1f); // Si no hay valor guardado, usa 1
+        musicSource.volume = volume;
         PlayMusic("BGMusic");
     }
 
@@ -39,6 +38,7 @@ public class AudioManager : MonoBehaviour
         else
         {
             musicSource.clip = s.clip;
+            musicSource.mute = false;
             musicSource.Play();
         }
     }
@@ -54,21 +54,16 @@ public class AudioManager : MonoBehaviour
         else
         {
             sfxSource.clip = s.clip;
+            musicSource.mute = false;
             sfxSource.Play();
         }
     }
 
-    // Métodos para ajustar volumen
-    public void SetMusicVolume(float volume)
-    {
-        audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
-    }
-
-    public void SetSfxVolume(float volume)
-    {
-        audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);
-    }
-
-
-
+    
 }
+
+    
+
+
+
+

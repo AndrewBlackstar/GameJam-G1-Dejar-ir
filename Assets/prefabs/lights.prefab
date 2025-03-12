@@ -603,7 +603,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.55, y: 2.789999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2033338369108282790}
   - {fileID: 20640506138085951}
@@ -827,7 +827,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 0.5242524, g: 0.7361903, b: 0.9339623, a: 1}
-  m_Intensity: 0.06
+  m_Intensity: 0
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
