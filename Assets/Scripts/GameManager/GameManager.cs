@@ -34,43 +34,41 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void Start(){
+    private void Start()
+    {
         managementData.SetAudioMixerData();
+
+        if (OpenCloseScene == null)
+        {
+            Debug.LogError("El Animator OpenCloseScene no está asignado en GameManager.");
+        }
+        else
+        {
+            OpenCloseScene.gameObject.SetActive(true); // 🔥 Asegurar que esté activo
+            OpenCloseScene.Update(0); // 🔥 Forzar actualización en WebGL
+        }
     }
+
     public void ChangeSceneSelector(TypeScene typeScene)
     {
         switch (typeScene)
         {
             case TypeScene.HomeScene:
-                //OpenCloseScene.SetBool("Out", true);
-                //OpenCloseScene.Play("Out");
-                StartCoroutine(FadeOut());
-                StartCoroutine(ChangeScene(typeScene));
+            case TypeScene.EscenaInicio:
+            case TypeScene.Exit:
+                StartCoroutine(TransitionScene(typeScene));
                 break;
+
             case TypeScene.OptionsScene:
                 SceneManager.LoadScene("OptionsScene", LoadSceneMode.Additive);
                 break;
-            case TypeScene.EscenaInicio:
-                //OpenCloseScene.SetBool("Out", true);
-               // OpenCloseScene.Play("Out");
-                StartCoroutine(FadeOut());
-                StartCoroutine(ChangeScene(typeScene));
-                break;
-            case TypeScene.Exit:
-               // OpenCloseScene.SetBool("Out", true);
-               // OpenCloseScene.Play("Out");
-                StartCoroutine(FadeOut());
-                StartCoroutine(ChangeScene(typeScene));
-                break;
+
             case TypeScene.NextLevel:
-               // OpenCloseScene.SetBool("Out", true);
-               // OpenCloseScene.Play("Out");
-                StartCoroutine(FadeOut());
                 StartCoroutine(NextLevel());
                 break;
-
         }
     }
+
 
 
     public IEnumerator FadeIn()
@@ -116,6 +114,28 @@ public class GameManager : MonoBehaviour
         StartCoroutine(FadeIn());
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    private IEnumerator TransitionScene(TypeScene typeScene)
+    {
+        if (OpenCloseScene == null)
+        {
+            Debug.LogError("El Animator OpenCloseScene no está asignado.");
+            yield break;
+        }
+
+        OpenCloseScene.SetBool("Out", true); // 🔥 Inicia Fade Out
+        yield return new WaitForSecondsRealtime(1f); // Esperar la animación de salida
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(typeScene.ToString());
+        yield return new WaitUntil(() => asyncLoad.isDone); // Esperar carga completa
+
+        OpenCloseScene.gameObject.SetActive(true); // 🔥 Asegurar que esté activo
+        OpenCloseScene.Update(0); // 🔥 Forzar actualización del Animator en WebGL
+
+        yield return new WaitForSecondsRealtime(0.1f); // Esperar un frame antes de Fade In
+
+        OpenCloseScene.SetBool("Out", false); // 🔥 Activar Fade In
     }
 
     public IEnumerator FadeOut()

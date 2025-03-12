@@ -93,9 +93,9 @@ public class MoviminetoJugador : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Spikes"))
         {
-            Debug.Log("enemigo detectado por collision");
+            Debug.Log("enemigo o spikes detectado por collision");
             healthManager.Takedamage(true);
         }
     }
@@ -108,6 +108,8 @@ public class MoviminetoJugador : MonoBehaviour
             Debug.Log("llega al final");
             GameManager.GameInstance.GameOverWin();
         }
+
+
     }
 
 }
