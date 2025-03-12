@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator ChangeScene(TypeScene typeScene)
     {
         Time.timeScale = 1;
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSecondsRealtime(1);
 
         if (typeScene != TypeScene.Exit)
         {
@@ -111,7 +111,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator NextLevel()
     {
         Time.timeScale = 1;
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSecondsRealtime(0.5f);
         OpenCloseScene.SetBool("Out", false);
         StartCoroutine(FadeIn());
 

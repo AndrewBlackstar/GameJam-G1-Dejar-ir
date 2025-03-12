@@ -1074,7 +1074,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1472,7 +1472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSound:
   - name: BGMusic
-    clip: {fileID: 8300000, guid: d0bf1437f6cbd164baba5d661ba6e976, type: 3}
+    clip: {fileID: 8300000, guid: 0da85eb72ea7afc4daff061bab718338, type: 3}
   SfxSound:
   - name: EnemyInstance
     clip: {fileID: 8300000, guid: ad6a9ce336885694cab4384554bc7c67, type: 3}
@@ -1812,7 +1812,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795154913}
   m_CullTransparentMesh: 1
---- !u!43 &1875879267
+--- !u!43 &1878550677
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
