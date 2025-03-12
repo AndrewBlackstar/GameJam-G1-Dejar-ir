@@ -17,6 +17,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/OptionsScene.unity
     guid: 03f73a1ee8d248e479bd47686c99012b
+  - enabled: 1
+    path: Assets/Group Asets/Andres/Andres escnario.unity
+    guid: 272b5c511c697a248afed0340bb6ba24
+  - enabled: 1
+    path: Assets/Group Asets/Andres/escenario 2.unity
+    guid: 676952cafe0763f4f9db1ff4d2c3f2a9
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
