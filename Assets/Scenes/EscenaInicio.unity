@@ -759,9 +759,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Te extra\xF1o tanto, se que hacer sin ti...\nDeberia volver a casa, ya
-    se esta haciendo tarde y no quiero tener problemas despues\nNos vemos la siguiente
-    semana, te quiero..."
+  m_text: "Te extra\xF1o tanto, no se que hacer sin ti...\nDeberia volver a casa,
+    ya se esta haciendo tarde y no quiero tener problemas m\xE1s tarde\nNos vemos
+    la siguiente semana, te quiero..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
