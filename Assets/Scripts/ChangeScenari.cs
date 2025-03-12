@@ -17,24 +17,9 @@ public class ChangeScenari : MonoBehaviour
         // Verifica si el objeto que entra en el trigger es el jugador
         if (collision.CompareTag("Player"))
         {
-            iniciarFade = true;
+            SceneManager.LoadScene("escenario 2");
             // Carga la nueva escena
         }
     }
-     private void Update()
-    {
-        if (iniciarFade)
-        {
-            // Realiza el fade-out
-            fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, fadeImage.color.a + fadeSpeed * Time.deltaTime);
-
-            // Cuando la imagen esté completamente opaca, cambia de escena
-            if (fadeImage.color.a >= 1)
-            {
-                SceneManager.LoadScene("escenario 2");
-            }
-        }
-    }
 }
-
 
